@@ -19,10 +19,16 @@ Applied **Java** and object-oriented programming (OOP) principles. Final project
 
 ---
 
+## Learn Python the Hard Way  
+Completed exercises from *Learn Python the Hard Way* by Zed Shaw. Strengthened proficiency in **Python** through incremental projects, focusing on variables, loops, functions, and debugging. Reinforced programming fundamentals and built confidence in applying Python to engineering challenges.  
+
+---
+
 ## Skills & Takeaways  
 - Programming languages: Python, C, Java  
 - Concepts: Algorithms, OOP principles, embedded systems, sensor integration, applied design  
 - Experience combining software development with hardware and real-world applications  
+- Reinforced problem-solving through repetition and incremental practice  
 
 ---
 
