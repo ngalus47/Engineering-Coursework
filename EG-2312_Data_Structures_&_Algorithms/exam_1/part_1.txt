@@ -1,0 +1,358 @@
+What is the greatest upper-bound of the signed short int variable UB defined as shown below? Assume sizeof(short int) = 2 (measured in bytes).
+C: 2^15 - 1
+
+Which one of the following operators has the highest precedence? A: * (indirection) B: * (multiplication) C: && (logical AND) D: & (bitwise AND)
+A: * (indirection)
+
+What is the associativity of the [] array-element selector operator? A: left-to-right B: right-to-left C: non-associative
+A: left-to-right
+
+What is the arity of the ! logical not operator? A: 1 B: 2 C: 3
+A: 1
+
+Which one of the following statements correctly uses the <stdlib.h> C standard library function malloc() to dynamically-allocate a single “chunk” of contiguous bytes of heap space that is exactly large enough to store n double-precision real numbers?
+C: double *A = (double *) malloc(sizeof(double)*n);
+
+Quoting the IntroductionToAbstractDataTypes.doc, “To fully define an ADT, the analyst/programmer defines (1) the attributes of the type (and the set of allowable values the attributes can take on); and (2) the set of operations allowed on objects of the ADT (the set of behaviors of objects).” T or F? The “attributes of the type” for each the ADTs developed in EG2312 are coded in the ADT data model.
+TRUE
+
+(Continuing 6) Private access member functions are not considered to be part of “the set of operations allowed on objects of the ADT” because, by design, T or F? private access member functions cannot be called by client applications.
+TRUE
+
+Constructor and destructor member functions are most like which other form of public member function? A: accessor B: mutator C: utility D: predicate
+C: utility
+
+T or F? A predicate member function is a void-returning accessor function.
+FALSE
+
+Analogy. T or F? standard accessor : “setter” function :: standard mutator : “getter” function
+FALSE
+
+A call-back function reference used when doing ADT development is
+A: a client function calling an ADT member function
+B: a client function calling another client member function
+C: an ADT member function calling a client member function
+D: an ADT member function calling another ADT member function
+E: none of these
+C: an ADT member function calling a client member function
+
+The pseudo-library ADTExceptions.h+ADTExceptions.c was developed primarily to deal with T or F? ensuring that pre-conditions and post-conditions for ADT public member function are satisfied.
+TRUE
+
+As developed in this semester in Dr. Hanna’s EG2312, T or F? the STACK ADT is a generic collection.
+FALSE
+
+T or F? February 29, 2012 is a legal Gregorian date.
+TRUE
+
+By design, the member function GetMMDATE() prototyped below is designed to return a copy of the int value stored in the MM field of the DATE object that the pointer date points-to, but does not change the value stored in the MM field. T or F? The pointer-to DATE parameter date is an IN-only (read-only) parameter.
+
+int GetMMDATE(const DATE *date);
+TRUE
+
+Which C-standard header file contains the definition of the datatype FILE?
+A: <stdio.h>
+
+Which operator in the expression &(*date).MM has the highest precedence?
+C: .
+
+(From DATE Problem #1) The data definition statement shown below is an example of a struct initializer used T or F? to violate the principle of information hiding.
+
+DATE date1 = { 1,30,1979,'A' };
+TRUE
+
+(From DATE Problem #2) The InputDATE2() member function is more “user-friendly” than the InputDATE() member function, but T or F? InputDATE2() does not validate user input.
+TRUE
+
+(From DATE Problem #3) T or F? The following two main()-resident statements are functionally-equivalent.
+
+DATE d1,d2;
+
+// in some way, d1 is assigned a meaningful value
+
+CopyDATE(&d1,d2); // void CopyDATE(DATE *LHS,const DATE RHS);
+
+d1 = d2;
+TRUE
+
+(Continuing 20) What is the correct way for CopyDATE() to copy the MM field contained in the DATE struct-ture RHS so as to overwrite the MM field in the DATE struct-ture *LHS? Hint LHS is a pointer-to a DATE object whereas RHS is a DATE object!
+C: LHS->MM = RHS.MM
+
+After the following series of STACK operations, what does PeekSTACK(&s,1) return?
+D: 4
+
+(Continuing 22) T or F? GetSizeSTACK(&s) returns 2.
+FALSE
+
+(Continuing 22) What does GetCapacitySTACK(&s) return?
+D: 7
+
+The reason the STACK abstract datatype does not “need” a DestructElement call-back function pointer (like so many other container abstract datatypes) is that T or F? STACK is not designed as a generic container.
+TRUE
+
+The mutator member function PopSTACK() formal parameter stack must be defined as a pointer-to STACK because it is a [ A: IN B: OUT C: IO ] parameter.
+C: IO
+
+Suppose you add the accessor member function OutputSTACK() to output the elements currently in the stack object *stack beginning with TOS (top-of-stack) and ending with the first element pushed on the stack *stack, namely the “bottom of the stack” stack->elements[0]. It should be clear that you should use a bounded-loop (also called a counted-loop) which is normally expressed in the C programming language as a for-statement whose loop-control variable ranges—lower bound, LB, and upper bound, UB—are computed as
+C: UB = stack->size-1 down-to LB = 0
+
+(From STACK Problem #1) When is the value of the constant MENUSIZE computed?
+B: during pre-processing
+
+(From STACK Problem #2) The STACK implementation of ConstructSTACK() adds the two lines highlighted below to the original STACK implementation, both of which are calls to the ADT exception handler function RaiseADTException(). T or F? Flow-of-control returns to the ConstructSTACK() function after it calls RaiseADTException().
+FALSE
+
+fter the following series of SLL operations, T or F? PeekSLL(&sll,1) returns a pointer-to the string "XYZ".
+FALSE
+
+Study the very-frequently-used algorithm used the “traverse-the-list-object-*sll-from-head-to-tail” shown below. When/Why does p become NULL?
+D: when p “points-to” a non-existent node beyond the end-of-the-list
+
+Where is each SLLNODE stored in memory?
+C: in the application’s heap memory
+
+What is sll->tail->FLink? Hint Drawing a picture helps to understand the double indirection!
+B: the FLink data member of the tail node (last node) of a non-empty list
+
+(From SLL Problem #1) What is sizeof(ALPHABET)?
+D: 27
+
+const char ALPHABET[] = "ABCDEFGHIJKLM"
+"NOPQRSTUVWXYZ";
+D: 27
+
+(From SLL Problem #1) For any non-empty list sll, PeekSLL(&sll,GetSizeSLL(&sll)-1) T or F? always returns a pointer-to the string “contained” in the tail node of the list object sll.
+TRUE
+
+(From SLL Problem #2) T or F? The highlighted if-statement below contains a then-clause that is an example of a boundary case.
+TRUE
+
+(From SLL Problem #3) Study the DeleteSLL() code. What does Dr. Hanna mean by his comment “middle node”? Answer Any node in a list (size >= 3) that is not pointed-to by either sll->head or sll->tail. T or F? “Middle nodes” are the only list nodes that do not represent boundary case conditions!?
+TRUE
+
+T or F? The VECTOR abstract datatype is developed as a generic container.
+TRUE
+
+T or F? All of the following VECTOR ADT member functions are accessor functions.
+
+void *GetVECTOR(const VECTOR *vector,const int index);
+int GetLBVECTOR(const VECTOR *vector);
+int GetUBVECTOR(const VECTOR *vector);
+int GetSizeVECTOR(const VECTOR *vector);
+TRUE
+
+T or F? The member function SetVECTOR() must handle two boundary cases that occur when
+index  [ LB,UB ], either (index < LB) or (index > UB).
+TRUE
+
+(From VECTOR Problem #1) How many operators are there in the highlighted expression? Be careful!
+A: 0 B: 1 C: 2 D: 3 E: 4
+
+printf(" vector[%3d] = %lf\n",index,*(double *) GetVECTOR(&vector,index));
+D: 3
+
+(From VECTOR Problem #1) T or F? The format specifier "%lf" also works to input real numbers into variables defined with the float datatype.
+FALSE
+
+(From VECTOR Problem #2) T or F? Serialization is the process of translating object state into a format that can be stored in a file in a manner so that the object state can be reconstructed later.
+TRUE
+
+(From VECTOR Problem #2) Analogy T or F? fwrite() : fprintf() :: binary output : formatted text output
+TRUE
+
+(From VECTOR Problem #2) T or F? No generic elements “pointed-to” by NOOBJECT elements[i] are written to the binary stream by StoreVECTOR() using the WriteElement() call-back function pointer parameter passed to StoreVECTOR(). Hint Study StoreVECTOR() then answer the question, “Is every object pointed-to by elements[i] for i  [ LB,UB ] written to the binary stream?”
+TRUE
+
+Which string would the reference PeekDLL(&dll,2); return?
+C: "XYZ"
+
+(Continuing 46) What would the reference GetSizeDLL(&dll); return?
+E: 4
+
+(Continuing 46) T or F? IsEmptyDLL(&dll);
+FALSE
+
+Study the very-frequently-used algorithm used the “traverse-the-list-object-*dll-from-head-to-tail” shown below. T or F? When the list object *dll is not empty, dll->head always points-to the logically-first node of the list object *dll.
+TRUE
+
+(Continuing 49) When/Why does p become NULL?
+D: when p “points-to” a non-existent node beyond the end-of-the-non-empty-list
+
+T or F? When p->FLink is not NULL, then p->FLink->BLink == p. Hint Drawing a picture helps to understand the double indirection!
+TRUE
+
+(From Problem #1) The variables pushN and dll are all locally-defined in main() and therefore T or F? “live” in the main() activation record for as long as main() is active. Note A function is activated when it is called and then de-activated when it returns.
+TRUE
+
+(From Problem #1) The function NewElement() is defined with no formal parameters, so T or F? the function prototype for NewElement() can also be written legally as
+
+char *NewElement(void);
+TRUE
+
+(From Problem #2) T or F? Using StoreDLL() to serialize the list object *dll changes the state of the list object *dll passed to StoreDLL().
+FALSE
+
+(From Problem #2) T or F? When a reference to the call-back function that WriteElement points-to causes an I/O error, the for-statement shown below will terminate before even when the condition
+(i <= GetSizeDLL(dll)) is true.
+TRUE
+
+QUEUE Abstract Datatype
+56. T or F? When Queue.c #include-s Queue.h and Queue.h #include-s DLL.h definitions, then by the “transitive property of #include-ing”, Queue.c includes the DLL.h definitions.
+TRUE
+
+57. It makes perfect algorithmic “sense” to associate the tail of the queue object *queue with the tail of the underlying DLL object queue->dll. T or F? The offset of the tail of the non-empty queue->dll can always be computed GetSizeDLL(&queue->dll)-1.
+TRUE
+
+58. (Continuing 57) T or F? It’s also possible to associate the head of the queue object *queue with the tail of the underlying DLL object queue->dll and to associate the tail of the queue object *queue with the head of the underlying DLL object queue->dll.
+TRUE
+
+59. (From Problem #1) What does the conditional operator '?:'  in the following assignment-statement expression evaluate to for i = 5? Be careful!? A: 5.0  B: 10  C: -10.0  D: -15  E: -15.0
+
+c->I = (double) ((i%2 == 0) ? 2*i : -3*i)
+
+E: -15.0
+
+60. (Continuing 59) T or F? Neither set of paired parentheses in the highlighted part of the expression-statement are absolutely necessary.
+FALSE
+
+PQUEUE Abstract Datatype
+61. The DLL abstract datatype is an implementation of a generalized linked list, so T or F? it makes sense to delegate PQUEUE abstract datatype operations to a DLL object because a PQUEUE object is simply a special-access list.
+TRUE
+
+62. T or F? The PQUEUE abstract datatype makes use of the call-back function pointer IsHigherPriority to logically determine which PQUEUE node is next to be “popped” from the priority queue.
+TRUE
+
+63. (Continuing 62) T or F? The IsHigherPriority call-back function pointer legally can be NULL.
+FALSE
+
+64. Assuming that the PQUEUE implementation associates the head of the priority queue object *pqueue with the head of the underlying DLL object pqueue->dll, then T or F? the call-back function pointed-to by IsHigherPriority must be coded to ensure that higher-priority elements are placed before lower-priority elements (that is, are placed closer to the head of the underlying DLL object pqueue->dll).
+TRUE
+
+65. (Continuing 64) T or F? The node containing the element with highest priority is the head node of the priority queue. Hint Deleting the head of the priority queue object *pqueue is equivalent to deleting the head of the underlying DLL object queue->dll.
+TRUE
+
+66. (Continuing 64) T or F? To traverse the priority queue object *pqueue in decreasing priority order (that is, from highest priority to lowest priority) means to traverse the underlying DLL object pqueue->dll from tail-to-head.
+FALSE
+
+67. (From Problem #1) T or F? The cast operators (JOB *) used in the following code segment are absolutely necessary.
+
+//--------------------------------------------------------------
+void DisplayJob(void *job)
+//--------------------------------------------------------------
+{
+   printf("[ \"%s\" (%5d,%3d) ]\n",
+      ((JOB *) job)->name,
+      ((JOB *) job)->arrivalTime,
+      ((JOB *) job)->duration);
+}
+TRUE
+
+68. (Continuing 67) T or F? Both sets of paired parentheses are absolutely necessary in the code segment ((JOB *) job)->name.
+TRUE
+
+69. (From Problem #1) T or F? The cast operator (void *) used in the body of the call-back function DestructJob() shown below is absolutely necessary to “cast away” the const-ness of the generic pointer job. Hint The prototype for the <stdlib.h> standard library function free() is void free(void *ptr); that is, the formal parameter ptr is defined as a pointer-to a non-const-ant generic datum.
+
+//--------------------------------------------------------------
+void DestructJob(const void *job)
+//--------------------------------------------------------------
+{
+   free((void *) job);
+}
+TRUE
+
+70. (From Problem #2) T or F? Subprogram modules HasEarlierArrivalTime() and DestructJob() are both used as client-resident call-back functions.
+TRUE
+
+71. (From Problem #2) T or F? It is possible to predict exactly how many clock “ticks” will occur before the simulated "execution of the Qs[1:cQs]-resident cJobs jobs" completes.
+TRUE
+
+72. (From Problem #2) T or F? To start serving a head job *job that has not yet been started, the condition
+( (job->arrivalTime <= clock) && !job->started ) must be true.
+TRUE
+
+73. (From Problem #2) T or F? It is possible that the call-back function that the InsertNow function pointer parameter points-to may be passed a NULL value for the LHS parameter.
+TRUE
+
+74. (From Problem #2) T or F? It is possible that the call-back function that the InsertNow function pointer parameter points-to may be passed a non-NULL value for the LHS parameter and a non-NULL value for the RHS parameter.
+TRUE
+
+75. (From Problem #2) T or F? The size of a pointer-to a JOB object measured in bytes, computed as sizeof(JOB), must be at least 4*sizeof(int)+sizeof(bool)+7*sizeof(char).
+TRUE
+
+What is the maximum number of children nodes that a parent node contained in a binary tree can have?
+C: 2
+
+T or F? By definition, the child node pointed-to by a parent node LLink field and the child node pointed-to by the same parent node RLink field are ancestors of each other.
+FALSE
+
+When a binary tree has a height of h, what is the maximum number of nodes in the binary tree?
+E: 2^(h+1)-1
+
+During which one of the following traversal orders is the root node not visited first?
+B: in-order
+
+T or F? The root node of a binary tree is the only node in the tree that does not have a parent.
+TRUE
+
+T or F? The BT abstract datatype public depth-first traversal member functions use “helper” functions (utility functions defined as private member functions) to provide a simpler public interface to client applications.
+TRUE
+
+T or F? By definition, the LLink and RLink fields of the BTNODE struct-ure make BTNODE a self-referential structure.
+TRUE
+
+How many children does the BTNODE object node have when node.LLink is NULL and node.RLink is not NULL?
+B: 1
+
+How many nodes are contained in the binary tree object bt when bt.root is NULL?
+A: 0
+
+T or F? The traversal order for the DestructBT2() algorithm must be do a post-order traversal of the binary tree being destructed.
+TRUE
+
+(From Problem #1) T or F? The Problem1.c tree is a complete binary tree.
+TRUE
+
+(From Problem #1) What is the depth of node #7 in the Problem1.c tree?
+C: 2
+
+(From Problem #1) What is the height of node #7 in the Problem1.c tree?
+A: 0
+
+(From Problem #2) From the Problem2.c (the client-application) point-of-view, the BT object tree is a binary tree that contains
+B: pointer-to integers
+
+(From Problem #2) T or F? The post-incremented value of CSN is used to compute the new node integer element value. Hint What int is computed when levels = 2 and *CSN = 2, 2002 or 2003?!
+
+element = levels1000+(*CSN)++;
+TRUE
+
+T or F? An undirected graph edge does not have a head and tail.
+TRUE
+
+When a directed graph has n vertices, what is the maximum number of edges in the graph expressed as a function of n?
+D: (n)(n-1)/2
+
+Which is the most space-efficient method to represent of a sparse graph?
+A: adjacency lists
+
+(From Digraph.c) T or F? MATRIX(row,col) is false means the directed edge (row,col) is not contained in the directed graph object *digraph.
+TRUE
+
+T or F? A directed graph object is constant in size after it is constructed; that is, a DIGRAPH object is not designed to be dynamically-extended like VECTOR, SLL, DLL, QUEUE, and PQUEUE objects.
+TRUE
+
+adjacencyMatrix is implemented as a two-dimensional array whose array elements are stored in ______ order.
+B: row-major
+
+The DIGRAPH abstract datatype data member vertexes is a ______ dimensional array.
+B: 1
+
+The algorithm for the breadth-first traversal of a directed graph requires the programmer to provide a queue (a FIFO singly-linked list) as an auxiliary data structure. What kind of auxiliary data structure does the algorithm for the depth-first traversal of a directed graph require?
+D: STACK
+
+T or F? pathExists is one of the recursive parameters for the recursive function FindPathInDIGRAPH().
+TRUE
+
+T or F? The function VertexIDIsOnPath() uses the algorithm for universal quantification.
+FALSE
+DIGRAPH Abstract Datatype

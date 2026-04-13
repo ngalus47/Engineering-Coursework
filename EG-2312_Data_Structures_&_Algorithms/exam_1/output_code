@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# ===============================
+# Config
+# ===============================
+SRC_DIR="."
+OUTPUT_TXT="exam_1_output.txt"
+OUTPUT_PDF="exam_1_output.pdf"
+EXECUTABLE="./code/exam_1"   # change this to your compiled executable
+
+# ===============================
+# Start fresh
+# ===============================
+> "$OUTPUT_TXT"
+
+echo "========================================" >> "$OUTPUT_TXT"
+echo "C PROJECT CODE DUMP" >> "$OUTPUT_TXT"
+echo "Generated on: $(date)" >> "$OUTPUT_TXT"
+echo "Directory: $(realpath "$SRC_DIR")" >> "$OUTPUT_TXT"
+echo "========================================" >> "$OUTPUT_TXT"
+echo "" >> "$OUTPUT_TXT"
+
+# ===============================
+# Print all C-related files
+# ===============================
+find "$SRC_DIR" -type f \( -name "*.c" -o -name "*.h" \) | sort | while read -r file; do
+    echo "========================================" >> "$OUTPUT_TXT"
+    echo "FILE: $file" >> "$OUTPUT_TXT"
+    echo "========================================" >> "$OUTPUT_TXT"
+    cat "$file" >> "$OUTPUT_TXT"
+    echo "" >> "$OUTPUT_TXT"
+    echo "" >> "$OUTPUT_TXT"
+done
+
+# ===============================
+# Run the executable and capture output
+# ===============================
+echo "========================================" >> "$OUTPUT_TXT"
+echo "PROGRAM OUTPUT" >> "$OUTPUT_TXT"
+echo "========================================" >> "$OUTPUT_TXT"
+
+if [ -x "$EXECUTABLE" ]; then
+    script -q -c "$EXECUTABLE" /dev/null | tee -a "$OUTPUT_TXT"
+else
+    echo "Executable not found or not executable: $EXECUTABLE" >> "$OUTPUT_TXT"
+fi
+
+# ===============================
+# Export TXT to PDF
+# Requires: enscript + ps2pdf
+# ===============================
+if command -v enscript >/dev/null 2>&1 && command -v ps2pdf >/dev/null 2>&1; then
+    enscript "$OUTPUT_TXT" -B -f "Courier10" -o - | ps2pdf - "$OUTPUT_PDF"
+    echo "PDF created: $OUTPUT_PDF"
+else
+    echo "Could not create PDF."
+    echo "Install required tools with:"
+    echo "  sudo apt install enscript ghostscript"
+fi
+
+echo "Text output saved to: $OUTPUT_TXT"
