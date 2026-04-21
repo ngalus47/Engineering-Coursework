@@ -1,0 +1,148 @@
+1. A or D? Did Dijkstra call for total abolishment of goto?
+   (D)isagree -- Dijkstra called for abolishment in high-level languages but
+   still allowed goto for complicated control structures and "alarm exits."
+
+2. T or F? All uses of goto are poor programming practice.
+   False -- some uses (error handling in C, nested loop exits) are acceptable
+   and can make code cleaner than the alternatives.
+
+3. Which C/C++/Java control flow syntax is most like a goto-statement?
+   E: break-statement
+
+4. T or F? Computer Science was originally founded in Engineering and/or Math.
+   True
+
+5. Why did formal verification turn out to be unworkable?
+   (1) Practically: the proofs were too long, tedious, and unconvincing.
+   (2) Theoretically: Godel's Incompleteness Theorem proves that some
+       mathematical statements simply cannot be proved.
+
+6. T or F? After formal verification was abandoned, the search turned to
+   techniques for correct program derivation.
+   True
+
+7. Name one technique for correct program derivation.
+   Top-down design; functional decomposition; structured programming;
+   object-oriented programming (any one counts).
+
+8. How is goto semantics implemented in machine code?
+   Via a JMP or BR (branch) instruction that directly overwrites the
+   Program Counter (PC) register.
+
+9. A or D? The programmer really controls code execution at runtime.
+   (D)isagree -- once written and running, the machine controls execution.
+   The programmer is responsible for the static code she writes, and that
+   code drives the dynamic execution, but she no longer directly controls
+   it at runtime.
+
+10. Which control construct appears to have been invented last?
+    B: case[i]-of
+
+11. Why is "iterate, v. -- See iterate." so funny?
+    It is a circular (recursive) definition -- looking up "iterate" tells
+    you to look up "iterate," sending you back forever. The joke IS the
+    definition.
+
+12. Why did Dijkstra prefer "error" over "bug"?
+    "Bug" is too cute and innocuous -- it softens the gravity of a mistake.
+    "Error" is precise and carries appropriate seriousness.
+
+13. Name at least one way a program can be correct.
+    (1) Syntactically correct -- compiles and links successfully.
+    (2) Functionally correct -- satisfies the stated requirements (verification).
+    (3) Solves the right problem -- the requirements themselves are correct
+        (validation).
+
+14. T or F? The dynamic aspects of a program should be evident in the
+    structure of the source code itself.
+    True -- the mapping is constructed by using structured control flow
+    (if/else, while, for) so the code's visual structure mirrors its
+    runtime behavior.
+
+15. Who/What constructs the STATIC representation of a program?
+    Programmer
+
+16. Who/What constructs the DYNAMIC representation of a program?
+    ALL apply -- programmer (writes the code), compiler/linker (translates),
+    computer hardware (executes), and operating system (manages the process).
+
+17. T or F? A sequence point and Dijkstra's "textual index" are essentially
+    the same thing.
+    True
+
+18. T or F? Sequence point alone is not sufficient to describe flow-of-control
+    during iteration or nested subroutine calls. Explain if True.
+    True -- a sequence point only tracks WHERE in the code execution is.
+    It does not track WHICH iteration of a loop is active (dynamic index)
+    or how deep nested procedure calls are (call stack depth). Both extra
+    coordinates are required for a complete description.
+
+19. Mark the in-between states for n = n+1.
+
+    Load/Store architecture:
+       LOAD  n       <-- sequence point (before: n has old value)
+       ADD   #1      <-- IN-BETWEEN: result computed, not yet stored
+       STORE n       <-- sequence point (after: n has new value)
+
+    Stack-Based architecture:
+       PUSH  n       <-- sequence point (before: n has old value)
+       PUSH  #1      <-- IN-BETWEEN
+       ADD           <-- IN-BETWEEN: sum on stack, n not yet updated
+       POP   n       <-- sequence point (after: n has new value)
+
+    The in-between states are every instruction BETWEEN the first read
+    of n and the final write back to n -- during those instructions the
+    sum exists only in a register or on the stack, and n still holds its
+    old value.
+
+20. What is "the execution state and history of the program"?
+    The current values of all program variables, the contents of the
+    run-time call stack, and the values of all CPU registers -- together
+    with the flow-of-control history (the sequence of statements executed)
+    that produced those values.
+
+21. T or F? It should be possible to determine the value of any variable
+    at any point during a deterministic program's execution.
+    True
+
+22. T or F? Loop constructs are superfluous because repetition can always
+    be expressed using recursion.
+    True
+
+23. T or F? break and continue are examples of Dijkstra's "abortion clauses."
+    True
+
+24. Give an example of an unstructured (unrestricted) goto-statement.
+    Jumping INTO the middle of a loop body from outside it, or jumping
+    BACKWARD into a previously executing procedure from a deeper call --
+    neither is achievable with break/continue/return and both corrupt the
+    call stack and loop iteration coordinates.
+
+25. A or D? Dijkstra considered goto harmful but not lethal and not useless.
+    (A)gree
+
+26. Name one C standard library function used for "alarm exits."
+    exit(), abort(), or raise()
+
+27. Rewrite the while-loop using if + 2 gotos + 2 labels.
+    n = 1;
+    L10: if ( !(n <= x) ) goto L20;
+             printf("*"); n++;
+             goto L10;
+    L20: printf("\n");
+
+28. IF/ELSEIF/ELSE -- implicit goto arrows:
+    Every false condition jumps forward past its body to the next test.
+    Every true body ends with an unconditional jump to END (past all
+    remaining ELSEIF/ELSE branches).
+
+29. WHILE with BREAK -- implicit goto arrows:
+    The WHILE condition jumps past END on false. The BREAK jumps to
+    next-statement unconditionally. END always jumps back up to the
+    WHILE condition.
+
+30. DO/UNTIL -- implicit goto arrows:
+    The UNTIL test at the bottom: if false, jumps back up to DO
+    (loop again); if true, jumps forward to next-statement (exit).
+    Note the body below UNTIL inside the same DO...END is only
+    reachable if UNTIL is false, so it executes before looping back.

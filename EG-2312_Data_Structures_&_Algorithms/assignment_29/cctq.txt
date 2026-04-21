@@ -1,0 +1,50 @@
+1. After sorting copyA[] into ascending order, how many ascending-order
+   inversions does it contain?
+   0 -- a correctly sorted ascending array has zero ascending-order inversions.
+
+2. If copyA[] is sorted ascending but NumberOfInversions() is called with
+   Descending, how many descending-order inversions are there?
+   n*(n-1)/2 -- every pair is a descending-order inversion when the array
+   is fully sorted in the opposite direction.
+
+3. T or F? The incorrect goto-loop in FYI #1 is always an infinite loop
+   when (n >= 0).
+   True -- i is reset to n at the top of the loop every iteration so the
+   condition (i < 0) is never reached when n >= 0.
+
+4. T or F? A function-pointer is a datum that points-to code.
+   True
+
+5. What exactly is Ascending in DoBubbleSort(copyA,n,Ascending,...)?
+   A: an actual parameter  AND  B: a pointer-to a function  AND
+   C: the name of a function -- all three apply. In C, a function name
+   IS its address, so passing Ascending passes a pointer to that function
+   as an actual parameter.
+
+6. T or F? ShouldSwap and ShouldSelect are initialized with pointers-to
+   application-resident functions.
+   True -- Ascending() and Descending() are defined in Problem5.c itself.
+
+7. T or F? The function reference operator () must be used even when the
+   function has no formal parameters, as in void DeNada(void) {}.
+   True -- DeNada() is still required to call it; the () is what triggers
+   the function call regardless of parameter count.
+
+8. T or F? The value of n completely determines both the number of
+   comparisons AND the number of swaps/moves used by DoSelectionSort().
+   True -- Selection Sort always does exactly n*(n-1)/2 comparisons and
+   exactly 3*(n-1) moves regardless of the initial order of the data.
+
+9. What is the scope of the labels FOR1 and endFOR1?
+   Function scope -- statement labels in C are visible throughout the
+   entire function in which they are declared, not just within the block
+   where they appear. That is why the forward reference to endFOR1 in
+   the if/goto works even before endFOR1 is declared.
+
+10. Write code to call the function ShouldSwap points-to, passing A[i]
+    and A[i+1] as actual parameters.
+    Two valid syntaxes:
+       if ( ShouldSwap(A[i], A[i+1]) )
+       if ( (*ShouldSwap)(A[i], A[i+1]) )
+    Both are correct; the dereference operator is optional for
+    function-pointer calls in C.

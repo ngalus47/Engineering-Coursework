@@ -1,0 +1,46 @@
+1. What is the time complexity of FindConvexHull()?
+   D: Θ(n³) -- three nested loops (i1, i2, i3) each up to n, giving Θ(n³).
+
+2. Which is the correct syntax for referencing the x coordinate of p1 in segments[i]?
+   D: segments[i].p1.x
+
+3. How can points[] and segments[] be coded as variable length arrays (VLAs)?
+   Declare them on the stack using n known at runtime: POINT points[n+1]; and
+   SEGMENT segments[n+1]; -- no malloc/free needed, they live in the activation
+   record and are freed automatically when the function returns. Downside: large n
+   can overflow the stack, which is why heap allocation is preferred.
+
+4. How many extreme points are there for n=15, s=8? What is the relationship
+   between number-of-segments and number-of-extreme-points?
+   B: 8 -- number-of-segments = number-of-extreme-points.
+
+5. What does the format specifier "%5.1f" mean?
+   C: 5 digits total -- 3 digits before the decimal point, the decimal point,
+   1 digit after the decimal point, XXX.X
+
+6. The doubly-nested for-statements generate every pair-sized combination
+   of the n points[]. T or F?
+   True -- i1 from 1 to n-1 and i2 from i1+1 to n generates every unique
+   unordered pair exactly once, which is C(n,2) combinations, Θ(n²).
+
+7. What are the i3 lower and upper bounds?
+   i3_lowerbound = 1, i3_upperbound = n
+   Points[i1] and points[i2] are excluded via the condition:
+   (i3 != i1) && (i3 != i2)
+
+8. What are the four programmer responsibilities when outputting to a text file?
+   (1) Define a pointer-to-FILE variable:  FILE *OUT;
+   (2) Open the file:                      OUT = fopen("Problem25.out", "w");
+   (3) Write to the file:                  fprintf(OUT, ...);
+   (4) Close the file:                     fclose(OUT);
+
+9. Under what abnormal circumstances will s grow too large?
+   If the positive/negative side logic in FindConvexHull() is incorrect,
+   nearly every one of the Θ(n²) candidate segments could be falsely added
+   to segments[], blowing past the n+1 allocated elements and causing a
+   buffer overflow / undefined behavior.
+
+10. The assertion assert(s <= n) must be coded assert(*s <= n) when placed
+    inside FindConvexHull(). T or F?
+    True -- inside FindConvexHull(), s is a pointer (int *s), so it must be
+    dereferenced to compare the actual count value.

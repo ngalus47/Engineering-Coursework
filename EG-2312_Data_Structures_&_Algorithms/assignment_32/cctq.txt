@@ -1,0 +1,68 @@
+1. T or F? description, W, n, w, and v are all OUT formal parameters
+   of GetProblemInputs().
+   True -- none of them carry values into the function. They all exist
+   solely to carry results back out to the caller.
+
+2. T or F? main() opens and closes the .ikp input data file.
+   True -- fopen() is called in main() and fclose(IN) is called in
+   main() immediately after GetProblemInputs() returns.
+
+3. T or F? GetProblemInputs() contains the code to dynamically allocate
+   both v[] and w[] from the heap.
+   True -- the malloc() calls for *w and *v are inside GetProblemInputs(),
+   even though free(w) and free(v) are called in main().
+
+4. T or F? It is main() that dynamically allocates the boolean array
+   knapsack[].
+   True -- knapsack = (bool *) malloc((n+1)*sizeof(bool)) is in main(),
+   after GetProblemInputs() returns n.
+
+5. T or F? The two statements GetProblemInputs() and fclose(IN) can be
+   interchanged with no adverse logical effects.
+   False -- GetProblemInputs() reads from IN using fscanf() and fgets().
+   If fclose(IN) were called first the file would be closed before the
+   data was read, causing the reads to fail.
+
+6. What are the values of W and n for Problem5.ikp?
+   W = 10, n = 5
+
+7. What are the values of w[3] and v[3] for Problem5.ikp?
+   w[3] = 3, v[3] = 20  (the third item: "3 20")
+
+8. Which item has the highest value? Which has the lowest weight?
+   Highest value: item 5 with v[5] = 25.
+   Lowest weight: item 2 with w[2] = 1.
+
+9. When knapsack[1:5] = {true, true, false, false, true}, what does
+   Value() return?
+   v[1] + v[2] + v[5] = 12 + 10 + 25 = 47
+
+10. What does UnusedWeight() return for that same knapsack?
+    W - w[1] - w[2] - w[5] = 10 - 2 - 1 - 4 = 3
+
+11. T or F? knapsack = {true,true,false,false,true} is the optimum
+    solution for Problem5.ikp.
+    False -- it is a valid candidate solution with total value 47 and
+    unused weight 3, but it is not necessarily optimal. The dynamic
+    programming algorithm finds the true optimal solution by filling
+    the full F table.
+
+12. What would DisplaySolution() output for that knapsack?
+    1:(2,12) 2:(1,10) 5:(4,25)
+    (item number, weight, value for each item where knapsack[i] is true)
+
+13. T or F? No matter what unused weight X is reported, the solution
+    found by Problem3.c (Brute Force) is always an optimal solution.
+    True -- brute force exhaustive search checks every possible subset
+    and picks the best one, so it is guaranteed to find the exact
+    optimal solution regardless of unused weight.
+
+14. How many integers big is the table for Problem5.ikp?
+    (W+1) * (n+1) = (10+1) * (5+1) = 11 * 6 = 66 integers
+
+15. T or F? Setting F[0,j] = 0 and F[i,0] = 0 allows for simpler
+    logic at the borders of the table.
+    True -- the base cases represent having 0 items available (row 0)
+    or 0 capacity remaining (column 0), both of which have a maximum
+    value of 0. Initializing these avoids special-case checks inside
+    the main double loop when i=1 or j=0.

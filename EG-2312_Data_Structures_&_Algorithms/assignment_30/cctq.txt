@@ -1,0 +1,276 @@
+1. What is self-efficacy and why does it matter for a programmer reading
+   unfamiliar code?
+   Self-efficacy is the strength of one's belief in their own ability to
+   complete tasks and reach goals. It matters because developers who lack
+   it will give up on reading unfamiliar code early, convincing themselves
+   it is too big or too ugly to understand, when the real barrier is just
+   confidence.
+
+2. What is a software stack?
+   The set of software components and subsystems needed to deliver a fully
+   functioning solution. For example, an application sitting on top of a
+   framework, sitting on top of an OS, sitting on top of hardware.
+
+3. What is the difference between open-source and closed-source software?
+   Open-source releases the source code publicly so anyone can read, modify,
+   and distribute it. Closed-source only distributes compiled executables
+   and keeps the source private. Microsoft Windows is a classic closed-source
+   example.
+
+4. What does good self-documented code look like? What techniques produce it?
+   Self-documented code uses meaningful identifier names, clear function
+   decomposition, consistent formatting, and comments that explain WHY not
+   WHAT. Techniques include descriptive variable and function names, small
+   focused functions, avoidance of magic numbers, and logical grouping of
+   related code.
+
+5. Is your code already self-documented or do you need to change your style?
+   Not fully. Variable names in lab code tend toward short names like i, j,
+   and temp which are fine for loop counters but less clear elsewhere.
+   There is room to improve on commenting the intent behind logic rather
+   than just the mechanics of what it does.
+
+6. A or D? "The source code is the ultimate truth, the source code never lies."
+   Agree. Documentation goes stale, comments get out of date, and specs
+   change without being updated. The source code is exactly what the machine
+   executes so it is by definition the most accurate description of what
+   the software actually does.
+
+7. What obligations does "if you can't understand the platform below you,
+   how can you understand your own software?" place on a developer?
+   It obligates the developer to understand not just their own code but the
+   tools, libraries, OS calls, and frameworks their code depends on. You
+   cannot fully reason about your software's behavior if the layers beneath
+   it are a black box.
+
+8. What does "git clone" mean?
+   It downloads a full copy of a remote repository including its entire
+   commit history to your local machine so you can read, build, and modify
+   it independently.
+
+9. What is the codebase of a known problem like Problem #29 (HEAP ADT)?
+   The codebase includes every source file needed to build and run the
+   program: Problem29.c, any included headers like Random.h, the standard
+   library headers it depends on, and the compiler and linker tools used
+   to produce the executable.
+
+10. Respond to "If it runs on my machine, it's my software. I'm responsible
+    for it. I must understand it."
+    This is the right attitude for a professional developer. If a bug in a
+    library you depend on breaks your product, your customer does not care
+    whose fault it is. You own the whole stack you ship on. That is a higher
+    standard than most beginners hold themselves to but it is the correct one.
+
+11. What is the payback for learning other people's code?
+    You absorb techniques and patterns from developers better than yourself,
+    you gain domain knowledge embedded in the code, you become faster at
+    reading all code over time, and you become the go-to person on a
+    codebase rather than always needing someone to explain things to you.
+
+12. What does "link against a closed library" mean?
+    It means your compiled program references and uses a precompiled binary
+    library whose source code you do not have access to. You can call its
+    functions but you cannot read, modify, or debug the underlying
+    implementation.
+
+13. Why is reading other people's code boring and hard? Why do it anyway?
+    It is hard because you did not write it and you lack the context of the
+    decisions that shaped it. It is boring because passive reading without
+    understanding feels unproductive. You do it anyway because you learn
+    from developers more skilled than yourself and because reading code is
+    a necessary survival skill on any real team project.
+
+14. Do you believe "reading great code is as important for a programmer as
+    reading books is for a writer"?
+    Yes. A writer who only writes and never reads stays in their own bubble
+    and never absorbs the craft of others. The same applies to programmers.
+    You cannot develop taste for good code if you have never seen any.
+
+15. How does one read code effectively?
+    Start with structure and style before diving into details. Find the entry
+    point and trace how control flows outward from there. Only after getting
+    the high-level picture do you drop into individual functions line by line.
+    The software architecture, meaning the structure chart of modules and
+    their relationships, is the right starting frame.
+
+16. What is an entry point?
+    The place in the code where execution begins. In C that is main(). In a
+    web framework it might be a controller or servlet. It is the root of the
+    call tree from which all other execution branches out.
+
+17. What is testing trying to accomplish and why does it help with reading code?
+    Testing verifies that the code produces correct output for known inputs.
+    It helps with reading because tests describe the intended behavior of
+    functions in concrete executable form. Reading tests gives you a
+    ground-truth description of what the code is supposed to do which makes
+    the implementation easier to follow.
+
+18. Why is it easier to extract and study maximally-cohesive code modules?
+    Because a highly cohesive module does one thing and has minimal
+    dependencies on the rest of the system. You can pull it out, run it
+    in isolation, and understand it without needing to drag in the entire
+    codebase context.
+
+19. What is refactoring and when should you consider it?
+    Refactoring is restructuring existing code without changing its external
+    behavior. You consider it when code is hard to read, overly complex, or
+    duplicated. It improves readability and maintainability and it is also
+    a useful technique for forcing yourself to deeply understand code you
+    are trying to read.
+
+20. What is "code smell" and how smelly is your code?
+    Code smell is a symptom in source code that hints at a deeper underlying
+    problem, like overly long functions, duplicate code, or deeply nested
+    conditionals. Honest answer: some of the earlier lab code had deeply
+    nested conditionals that worked but were not clean. It is something to
+    keep improving on.
+
+21. Why use a code-reading buddy?
+    Because verbalizing your understanding forces you to be precise about
+    what you actually know versus what you are guessing at. A partner will
+    catch wrong assumptions and push back on unclear explanations which
+    accelerates understanding faster than reading alone.
+
+22. Is "you're always evolving and you'll never get it just right" disheartening
+    or challenging?
+    Challenging. It means there is always something more to learn and improve
+    which is motivating if you have the right mindset. It is only disheartening
+    if you expect to reach a point where you are done improving.
+
+23. What is reverting in software development?
+    Abandoning one or more recent changes and returning to a previous version
+    of the code. In Git this is done with git revert or git checkout to go
+    back to a known good state, which is especially useful when a refactor
+    breaks something and you need to undo it.
+
+24. Why is "working in pairs while thinking aloud" good advice?
+    Because explaining code out loud forces you to articulate your
+    understanding precisely. Gaps in your reasoning become obvious the
+    moment you try to say them out loud to another person who can push back.
+
+25. Does the author mean "argue" literally or dialectically?
+    Dialectically. The goal is not to win a debate but to investigate the
+    truth of your interpretation through logical discussion. You challenge
+    each other's readings until you converge on the correct understanding.
+
+26. Why does "look at the beginning and the end before figuring out the middle"
+    make sense?
+    Because the beginning tells you what inputs and setup the code expects
+    and the end tells you what outputs or results it produces. Once you know
+    the input and output, the middle process becomes constrained and easier
+    to reason about. This mirrors the IPO model of systems analysis.
+
+27. How should a program's architecture relate to its requirements?
+    The architecture should directly reflect the requirements. Each major
+    requirement should map to an identifiable module or component in the
+    structure. The outside, meaning architecture, should come first because
+    you need to know what the system must do before deciding how to organize
+    the code that does it.
+
+28. What is metadata?
+    Data that describes other data. For example a git commit's author,
+    timestamp, and message are metadata about the code change. File system
+    metadata includes file size, creation date, and permissions.
+
+29. What is a software versioning and revision control system?
+    A system that tracks changes to source code over time, allowing
+    developers to see the full history of modifications, revert to earlier
+    versions, and collaborate without overwriting each other's work. Git
+    is the most widely used example today.
+
+30. What is a spec (specification)?
+    A formal description of what a system must do (functional requirements)
+    and how it must behave (non-functional requirements). Functional specs
+    define inputs, outputs, and behaviors. Non-functional specs define
+    constraints like performance, security, and reliability.
+
+31. What is an edge case (boundary case)?
+    An input or condition that occurs at the extreme boundary of the valid
+    input range or at the intersection of multiple conditions where the
+    normal logic of a program is most likely to fail or behave unexpectedly.
+    For example, passing n=0 or n=1 to a sorting function.
+
+32. What does the author mean by "code conventions"?
+    Beyond formatting, code conventions include things like how errors are
+    handled, whether the team favors iteration or recursion, how abstractions
+    are layered, and what patterns are used repeatedly throughout the
+    codebase. It is the unwritten agreement about how the team writes logic
+    not just how they space their braces.
+
+33. What is your programming style?
+    Consistent indentation, descriptive function names, comments that explain
+    non-obvious logic, and a preference for structured control flow over
+    clever one-liners. Working on keeping functions smaller and more focused
+    and on writing more self-documenting code as the assignments get more
+    complex.
+
+34. What does "abstract out" mean? Is it the same as functional decomposition?
+    Yes, essentially. To abstract out a piece of code means to extract it
+    into its own function or module so it can be understood and reused
+    independently. This is functional decomposition at the code level:
+    identifying a cohesive chunk of behavior and giving it a name and a
+    well-defined interface.
+
+35. What is a map in computer science?
+    An associative array or dictionary: an abstract data type that stores
+    key-value pairs where each key is unique. It supports insert, delete,
+    lookup, and modify operations. Common implementations include hash tables
+    and binary search trees.
+
+36. How do you teach yourself to pay attention to important details?
+    By deliberately slowing down on unfamiliar code instead of skimming,
+    writing down questions as they come up rather than glossing over them,
+    and testing your understanding by predicting what the code does before
+    running it. Attention to detail is a habit built through repeated
+    deliberate practice.
+
+37. What is the advantage of tracing code backward from a known output?
+    Starting from something you already know the code produces gives you a
+    concrete anchor. Working backward through the chain of actions that
+    produces that output is more manageable than reading the whole codebase
+    from top to bottom with no frame of reference.
+
+38. Explain the common sense of using chains of actions to understand new code.
+    All code is ultimately a series of connected steps that transform inputs
+    into outputs. If you identify one step you understand and follow the
+    chain in both directions you progressively illuminate more of the codebase
+    from a position of actual understanding rather than guessing your way
+    through from the top.
+
+39. Why expose yourself to high-quantity, high-quality examples of expertise?
+    Because expert pattern recognition is built through repeated exposure
+    not through being told rules. The more good code you read the more your
+    brain learns to distinguish signal from noise automatically. You develop
+    intuition that is real knowledge even when you cannot fully articulate
+    the rules behind it.
+
+40. What is deliberate practice?
+    Practice that is focused and intentional with specific goals for
+    improvement rather than just going through the motions. It involves
+    working at the edge of your current ability, getting feedback, and
+    making targeted corrections. Simply writing more code does not count
+    unless you are actively pushing into unfamiliar territory and reflecting
+    on the results.
+
+41. Explain Kathy Sierra's approach to developing code-reading expertise.
+    Exposure to large quantities of high-quality examples combined with
+    feedback trains the brain to detect patterns and structures without
+    conscious awareness. Over time the brain fine-tunes its perception and
+    develops what feels like intuition but is actually deeply learned pattern
+    recognition. You do not need someone to explain the rules; you absorb
+    them through volume of exposure.
+
+42. Is expert intuition truly knowing or merely educated guessing?
+    It is truly knowing, just not in a form that can always be verbalized.
+    The chick sexing example shows that the brain builds accurate models
+    from exposure even when the conscious mind cannot explain the rules.
+    Expert intuition is reliable pattern recognition operating below conscious
+    awareness, not random guessing dressed up as confidence.
+
+43. Are you understanding code quicker now than at the beginning of the semester?
+    Yes. Going through each assignment and having to read Dr. Hanna's provided
+    code before writing my own has made a noticeable difference. Early on I
+    would spend a lot of time just figuring out what the scaffolding was even
+    doing before I could start. Now I can find the entry point, follow the
+    structure, and get oriented much faster. The volume of code you are
+    exposed to in this class adds up.
